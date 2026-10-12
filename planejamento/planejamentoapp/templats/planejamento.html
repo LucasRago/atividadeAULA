@@ -1,0 +1,94 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluxa | Planejamento</title>
+    <link rel="stylesheet" href="{% static 'planejamento.css' %}">
+</head>
+<body>
+    <main class="pagina">
+        <header class="cabecalho">
+            <div>
+                <p class="marca">FLUXA</p>
+                <h1>Meu planejamento</h1>
+                <p class="subtitulo">Organize suas tarefas e acompanhe seu progresso.</p>
+            </div>
+            <div class="selo">Organização diária</div>
+        </header>
+
+        <section class="indicadores" aria-label="Resumo das tarefas">
+            <article><strong>{{ total }}</strong><span>Total de tarefas</span></article>
+            <article><strong>{{ pendentes }}</strong><span>Pendentes</span></article>
+            <article><strong>{{ concluidas }}</strong><span>Concluídas</span></article>
+        </section>
+
+        <div class="colunas">
+            <section class="painel formulario">
+                <h2>Nova tarefa</h2>
+                <p class="ajuda">Preencha os campos para adicionar uma tarefa ao planejamento.</p>
+                <form method="post" action="{% url 'adicionar_tarefa' %}">
+                    {% csrf_token %}
+                    <label for="titulo">Título</label>
+                    <input id="titulo" name="titulo" type="text" maxlength="120" placeholder="Ex.: Estudar programação" required>
+
+                    <label for="descricao">Descrição (opcional)</label>
+                    <textarea id="descricao" name="descricao" rows="4" placeholder="O que precisa ser feito?"></textarea>
+
+                    <div class="campos-lado-a-lado">
+                        <div>
+                            <label for="data_limite">Prazo</label>
+                            <input id="data_limite" name="data_limite" type="date">
+                        </div>
+                        <div>
+                            <label for="prioridade">Prioridade</label>
+                            <select id="prioridade" name="prioridade">
+                                <option value="baixa">Baixa</option>
+                                <option value="media" selected>Média</option>
+                                <option value="alta">Alta</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="botao-primario" type="submit">+ Adicionar tarefa</button>
+                </form>
+            </section>
+
+            <section class="painel lista-tarefas">
+                <div class="lista-cabecalho">
+                    <h2>Suas tarefas</h2>
+                    <span class="contador">{{ total }} cadastrada{{ total|pluralize:'s' }}</span>
+                </div>
+                {% for tarefa in tarefas %}
+                <article class="tarefa {% if tarefa.concluida %}finalizada{% endif %}">
+                    <div class="tarefa-topo">
+                        <h3>{{ tarefa.titulo }}</h3>
+                        <span class="prioridade {{ tarefa.prioridade }}">{{ tarefa.get_prioridade_display }}</span>
+                    </div>
+                    {% if tarefa.descricao %}<p class="descricao">{{ tarefa.descricao|linebreaksbr }}</p>{% endif %}
+                    {% if tarefa.data_limite %}<p class="prazo">Prazo: {{ tarefa.data_limite|date:'d/m/Y' }}</p>{% endif %}
+                    <div class="acoes">
+                        <form method="post" action="{% url 'alternar_conclusao' tarefa.id %}">
+                            {% csrf_token %}
+                            <button class="botao-acao" type="submit">{% if tarefa.concluida %}Reabrir{% else %}Concluir{% endif %}</button>
+                        </form>
+                        <form method="post" action="{% url 'excluir_tarefa' tarefa.id %}">
+                            {% csrf_token %}
+                            <button class="botao-acao excluir" type="submit">Excluir</button>
+                        </form>
+                    </div>
+                </article>
+                {% empty %}
+                <div class="vazio">
+                    <span aria-hidden="true">☑</span>
+                    <h3>Nenhuma tarefa cadastrada</h3>
+                    <p>Comece adicionando uma tarefa pelo formulário ao lado.</p>
+                </div>
+                {% endfor %}
+            </section>
+        </div>
+        <footer>Fluxa · Planejamento</footer>
+    </main>
+</body>
+</html>
