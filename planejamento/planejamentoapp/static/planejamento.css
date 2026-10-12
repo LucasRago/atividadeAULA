@@ -1,0 +1,50 @@
+* {box-sizing: border-box;}
+:root {font-family: Arial, Helvetica, sans-serif; color: #102c4b; background: #f0f4fa;}
+body {margin: 0;}
+.pagina {max-width: 1150px; margin: 0 auto; padding: 42px 24px 24px;}
+.cabecalho {display: flex; justify-content: space-between; align-items: center; gap: 20px;}
+.marca {color: #24649a; font-size: 13px; font-weight: 800; letter-spacing: 3px; margin: 0 0 12px;}
+h1 {font-size: clamp(30px, 4vw, 43px); margin: 0; letter-spacing: -.8px;}
+.subtitulo, .ajuda {color: #68809a; line-height: 1.5;}
+.subtitulo {margin-top: 10px;}
+.selo {border: 1px solid #d6e2ef; border-radius: 99px; background: white; padding: 13px 17px; color: #427199; font-size: 13px; white-space: nowrap;}
+.indicadores {display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 26px 0;}
+.indicadores article {background: white; border: 1px solid #dbe4ed; border-radius: 15px; padding: 21px 23px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 3px 12px #102c4b06;}
+.indicadores strong {font-size: 29px;}
+.indicadores span {font-size: 13px; color: #71849a;}
+.colunas {display: grid; grid-template-columns: 390px minmax(0, 1fr); gap: 20px; align-items: start;}
+.painel {background: white; border: 1px solid #dbe4ed; border-radius: 17px; padding: 27px; box-shadow: 0 3px 14px #102c4b08;}
+h2 {font-size: 21px; margin: 0 0 9px;}
+.ajuda {font-size: 13px; margin: 0 0 25px;}
+label {display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px;}
+input, textarea, select {width: 100%; border: 1px solid #cdd8e3; border-radius: 9px; padding: 12px; margin-bottom: 20px; font: inherit; font-size: 14px; color: #17324e; background-color: white;}
+textarea {resize: vertical; min-height: 90px;}
+input:focus, textarea:focus, select:focus {outline: 2px solid #add1ef; border-color: #206293;}
+.campos-lado-a-lado {display: grid; grid-template-columns: 1fr 1fr; gap: 12px;}
+.botao-primario {width: 100%; background: #1d4e78; border: 1px solid #1d4e78; color: white; padding: 14px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer;}
+.botao-primario:hover {background: #123f68;}
+.lista-cabecalho {display: flex; justify-content: space-between; gap: 8px; align-items: center; margin-bottom: 22px;}
+.lista-cabecalho h2 {margin: 0;}
+.contador {color: #7290ac; font-size: 12px;}
+.tarefa {border: 1px solid #e0e8f0; border-radius: 11px; padding: 18px; margin-top: 12px;}
+.tarefa-topo {display: flex; justify-content: space-between; align-items: start; gap: 9px;}
+h3 {font-size: 16px; margin: 0; overflow-wrap: anywhere;}
+.prioridade {font-size: 11px; font-weight: 700; border-radius: 99px; padding: 6px 10px;}
+.alta {background: #fff0ed; color: #b64e37;}
+.media {background: #fff5d8; color: #956814;}
+.baixa {background: #e3f3ea; color: #27734d;}
+.descricao {font-size: 13px; line-height: 1.5; color: #647e96; overflow-wrap: anywhere;}
+.prazo {font-size: 12px; color: #6c84a0;}
+.acoes {display: flex; gap: 8px; margin-top: 15px;}
+.botao-acao {background: #f0f5fa; border: 1px solid #d8e4ef; border-radius: 7px; padding: 9px 13px; color: #265477; font-size: 12px; font-weight: 700; cursor: pointer;}
+.botao-acao:hover {background: #e6eff8;}
+.botao-acao.excluir {color: #af5048; background: #fff5f4; border-color: #f4dbd8;}
+.finalizada {opacity: .74;}
+.finalizada h3 {text-decoration: line-through;}
+.vazio {text-align: center; color: #788aa0; padding: 48px 14px;}
+.vazio span {font-size: 32px; color: #94b5d2;}
+.vazio h3 {color: #264e72; margin-top: 12px;}
+.vazio p {font-size: 13px;}
+footer {color: #96a5b5; font-size: 12px; text-align: center; padding-top: 31px;}
+@media (max-width: 800px) {.colunas {grid-template-columns: 1fr;}.selo {display: none;}}
+@media (max-width: 500px) {.pagina {padding: 24px 12px;}.indicadores {gap: 8px;}.indicadores article {padding: 14px;}.indicadores strong {font-size: 23px;}.indicadores span {font-size: 11px;}.painel {padding: 19px;}.campos-lado-a-lado {grid-template-columns: 1fr; gap: 0;}}
