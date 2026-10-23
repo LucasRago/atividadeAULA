@@ -1,0 +1,28 @@
+body {
+    margin: 0px;
+    font-family: "Space Grotesk", ui-sans-serif, system-ui;
+}
+
+.cabecalho {
+    background-color: #090820;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cabecalho span {
+    margin: 0px;
+    color: white;
+    font-weight: bold;
+}
+
+.vitrine {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.cartao {
+    border: 2px solid black;
+}
